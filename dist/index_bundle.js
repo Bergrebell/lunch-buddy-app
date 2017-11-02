@@ -969,6 +969,10 @@ var _reactDom = __webpack_require__(18);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _counterView = __webpack_require__(32);
+
+var _counterView2 = _interopRequireDefault(_counterView);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1011,28 +1015,11 @@ var Counter = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var number = this.state.number;
-
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'button',
-                    { onClick: this.handlePlus },
-                    'Plus'
-                ),
-                _react2.default.createElement(
-                    'button',
-                    { onClick: this.handleMinus },
-                    'Minus'
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { id: 'count' },
-                    'Current number: ',
-                    this.state.number
-                )
-            );
+            return _react2.default.createElement(_counterView2.default, {
+                number: this.state.number,
+                handlePlus: this.handlePlus,
+                handleMinus: this.handleMinus
+            });
         }
     }]);
 
@@ -21239,6 +21226,46 @@ module.exports = function() {
   return ReactPropTypes;
 };
 
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = function (props) {
+    var number = props.number,
+        handlePlus = props.handlePlus,
+        handleMinus = props.handleMinus;
+
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+            "button",
+            { onClick: handlePlus },
+            "Plus"
+        ),
+        _react2.default.createElement(
+            "button",
+            { onClick: handleMinus },
+            "Minus"
+        ),
+        _react2.default.createElement(
+            "div",
+            { id: "count" },
+            "Current number: ",
+            number
+        )
+    );
+};
 
 /***/ })
 /******/ ]);

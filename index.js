@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import CounterView from './counter-view'
+
+
 class Counter extends React.Component {
+
     constructor(props) {
          super(props);
          this.handlePlus = this.handlePlus.bind(this);
@@ -25,16 +29,15 @@ class Counter extends React.Component {
      }
 
     render() {
-        var number = this.state.number;
-
         return (
-            <div>
-                <button onClick={ this.handlePlus }>Plus</button>
-                <button onClick={ this.handleMinus }>Minus</button>
-                <div id="count">Current number: { this.state.number }</div>
-            </div>
+            <CounterView
+                number={this.state.number}
+                handlePlus={this.handlePlus}
+                handleMinus={this.handleMinus}
+            />
         )
     };
+
 }
 
 ReactDOM.render(
