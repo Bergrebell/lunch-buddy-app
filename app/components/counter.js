@@ -1,10 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-
 import CounterView from './counter-view'
 
-
-class Counter extends React.Component {
+module.exports = class Counter extends React.Component {
 
     constructor(props) {
          super(props);
@@ -39,8 +36,3 @@ class Counter extends React.Component {
     };
 
 }
-
-ReactDOM.render(
- <Counter/>,
- document.getElementById('main')
-);
