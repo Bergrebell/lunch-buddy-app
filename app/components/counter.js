@@ -1,38 +1,30 @@
-import React from 'react'
-import CounterView from './counter-view'
+import React from 'react';
+import { connect } from 'react-redux';
 
-module.exports = class Counter extends React.Component {
+// filter states from central redux store
+const mapStateToPros = (state) => {
+  return {
+      number: state.number
+  }
+};
 
-    constructor(props) {
-         super(props);
-         this.handlePlus = this.handlePlus.bind(this);
-         this.handleMinus = this.handleMinus.bind(this);
+const mapDispatchToProps = (dispatch) => {
+  return {
+      onPlusClick: () => dispatch({ type: 'NUMBER_INCREASE' }),
+      onMinusClick: () => dispatch({ type: 'NUMBER_DECREASE' })
+  }
+};
 
-         this.state = {
-             number: 42
-         };
-     }
+const main = (props) => {
+    const {number, onPlusClick, onMinusClick} = props;
 
-     handlePlus() {
-        this.setState({
-            number: this.state.number + 1
-        })
-     }
+    return (
+        <div>
+            <button onClick={ onPlusClick }>Plus</button>
+            <button onClick={ onMinusClick }>Minus</button>
+            <div id="count">Current number: { number }</div>
+        </div>
+    )
+};
 
-     handleMinus() {
-        this.setState({
-            number: this.state.number - 1
-        })
-     }
-
-    render() {
-        return (
-            <CounterView
-                number={this.state.number}
-                handlePlus={this.handlePlus}
-                handleMinus={this.handleMinus}
-            />
-        )
-    };
-
-}
+module.exports = connect(mapStateToPros, mapDispatchToProps)(main);

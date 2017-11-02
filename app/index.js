@@ -1,9 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux';
 
-import Counter from './components/counter'
+import App from './components/app'
+import reducer from './state/reducer'
+
+const store = createStore(reducer);
 
 ReactDOM.render(
- <Counter/>,
- document.getElementById('main')
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('main')
 );
