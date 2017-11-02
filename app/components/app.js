@@ -1,12 +1,11 @@
 import React from 'react'
-import Counter from './counter'
+import Greeter from './greeter'
 
 
 module.exports = () => {
   return (
       <div>
-          <h1>COUNTER COUNTER COUNTER</h1>
-          <Counter />
+          <Greeter />
       </div>
   )
 };

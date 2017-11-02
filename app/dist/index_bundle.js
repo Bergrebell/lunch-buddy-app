@@ -1414,7 +1414,7 @@ var _app = __webpack_require__(54);
 
 var _app2 = _interopRequireDefault(_app);
 
-var _reducer = __webpack_require__(56);
+var _reducer = __webpack_require__(77);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -22248,9 +22248,9 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _counter = __webpack_require__(55);
+var _greeter = __webpack_require__(74);
 
-var _counter2 = _interopRequireDefault(_counter);
+var _greeter2 = _interopRequireDefault(_greeter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22258,107 +22258,13 @@ module.exports = function () {
     return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-            'h1',
-            null,
-            'COUNTER COUNTER COUNTER'
-        ),
-        _react2.default.createElement(_counter2.default, null)
+        _react2.default.createElement(_greeter2.default, null)
     );
 };
 
 /***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _react = __webpack_require__(3);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(62);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// filter states from central redux store
-var mapStateToPros = function mapStateToPros(state) {
-    return {
-        number: state.number
-    };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-    return {
-        onPlusClick: function onPlusClick() {
-            return dispatch({ type: 'NUMBER_INCREASE' });
-        },
-        onMinusClick: function onMinusClick() {
-            return dispatch({ type: 'NUMBER_DECREASE' });
-        }
-    };
-};
-
-var main = function main(props) {
-    var number = props.number,
-        onPlusClick = props.onPlusClick,
-        onMinusClick = props.onMinusClick;
-
-
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            'button',
-            { onClick: onPlusClick },
-            'Plus'
-        ),
-        _react2.default.createElement(
-            'button',
-            { onClick: onMinusClick },
-            'Minus'
-        ),
-        _react2.default.createElement(
-            'div',
-            { id: 'count' },
-            'Current number: ',
-            number
-        )
-    );
-};
-
-module.exports = (0, _reactRedux.connect)(mapStateToPros, mapDispatchToProps)(main);
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var initialState = {
-    number: 42
-};
-
-module.exports = function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-    var action = arguments[1];
-
-
-    switch (action.type) {
-        case 'NUMBER_INCREASE':
-            var newNumber = state.number + 1;
-            return { number: newNumber };
-        case 'NUMBER_DECREASE':
-            var newNumber = state.number - 1;
-            return { number: newNumber };
-        default:
-            return state;
-    }
-};
-
-/***/ }),
+/* 55 */,
+/* 56 */,
 /* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -23545,6 +23451,109 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
   verify(mapDispatchToProps, 'mapDispatchToProps', displayName);
   verify(mergeProps, 'mergeProps', displayName);
 }
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(62);
+
+var _actions = __webpack_require__(75);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        name: state.name
+    };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        onNameChange: function onNameChange(e) {
+            return dispatch((0, _actions.changeName)(e));
+        }
+
+    };
+};
+
+var main = function main(props) {
+    var name = props.name,
+        onNameChange = props.onNameChange;
+
+
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('input', { type: 'text', value: name, onChange: onNameChange }),
+        _react2.default.createElement(
+            'h3',
+            null,
+            'Hello ',
+            name,
+            '!'
+        )
+    );
+};
+
+module.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(main);
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.changeName = changeName;
+var CHANGE_NAME = exports.CHANGE_NAME = 'CHANGE_NAME';
+
+function changeName(e) {
+    return {
+        type: 'CHANGE_NAME',
+        payload: e.currentTarget.value
+    };
+}
+
+/***/ }),
+/* 76 */,
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var CHANGE_NAME = exports.CHANGE_NAME = 'CHANGE_NAME';
+
+var initialState = {
+    name: "Roman"
+};
+
+module.exports = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'CHANGE_NAME':
+            var newName = action.payload;
+            return { name: newName };
+        default:
+            return state;
+    }
+};
 
 /***/ })
 /******/ ]);
