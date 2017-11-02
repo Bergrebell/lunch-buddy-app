@@ -1,5 +1,3 @@
-export const CHANGE_NAME = 'CHANGE_NAME';
-
 const initialState = {
     name: "Roman"
 };

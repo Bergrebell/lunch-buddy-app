@@ -23516,8 +23516,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.changeName = changeName;
-var CHANGE_NAME = exports.CHANGE_NAME = 'CHANGE_NAME';
-
 function changeName(e) {
     return {
         type: 'CHANGE_NAME',
@@ -23532,11 +23530,6 @@ function changeName(e) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var CHANGE_NAME = exports.CHANGE_NAME = 'CHANGE_NAME';
 
 var initialState = {
     name: "Roman"
